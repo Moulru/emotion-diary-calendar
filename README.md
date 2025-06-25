@@ -1,45 +1,103 @@
-# Draw My Emotion
+# YOLOv8 Drawing Classification
 
-🖍️ 그림을 통해 감정을 표현하고, AI가 분석한 감정 흐름을 감성 캘린더에 기록해주는 웹 기반 감정 일기 서비스입니다.
+A YOLOv8-based image classification model for analyzing children's drawings and predicting emotional states or drawing categories.
 
----
+## 🎯 Features
 
-## ✨ 프로젝트 개요
+- **Image Classification**: Classify drawings into predefined categories using fine-tuned YOLOv8
+- **Visual Analysis**: Generate importance heatmaps to understand model decision-making
+- **Automated Preprocessing**: Automatic image resizing to 224x224 for optimal model performance
+- **Detailed Insights**: Comprehensive prediction analysis with confidence scores and region importance
 
-**Draw My Emotion**은 어린이를 주 대상으로 한 감정 기록 자동화 시스템입니다.  
-사용자는 그림을 그리거나 업로드하면, AI가 그림 속 감정을 분석하고 이를 일별로 시각화하여 감성 캘린더로 보여줍니다.
+## 📊 Model Output
 
----
+The model provides:
 
-## 🧩 핵심 기능
+1. **Primary Prediction**: Most likely class with confidence score
+2. **Top-3 Probabilities**: Ranked list of possible classifications
+3. **Visual Analysis**: 
+   - Original image display
+   - Resized model input (224x224)
+   - Importance heatmap showing decision regions
+   - Overlay visualization combining image and heatmap
 
-- 🎨 그림 업로드 (또는 실시간 그리기)
-- 😊 감정 분류 모델을 통한 감정 분석
-- 📅 감성 캘린더 UI로 감정 흐름 시각화
-- 📊 통계 기반 감정 리포트 제공
-- 🧠 지속적인 감정 추적 및 피드백
+## 🔍 Analysis Features
 
----
+### Importance Mapping
+- Analyzes which regions of the drawing influence the model's decision
+- Uses occlusion-based method to determine feature importance
+- Generates color-coded heatmaps (yellow = high importance, dark = low importance)
 
-## 🏗️ 기술 스택
+### Prediction Insights
+- **High Confidence** (>0.8): Reliable prediction
+- **Medium Confidence** (0.6-0.8): Standard prediction
+- **Low Confidence** (<0.6): Uncertain prediction, may need review
 
-| 구분 | 기술 |
-|------|------|
-| Frontend | React, Tailwind CSS |
-| Backend | FastAPI / Flask |
-| AI 모델 | PyTorch (Emotion Classification Model) |
-| DB | MongoDB / PostgreSQL |
-| 기타 | Docker, GitHub Actions, S3 |
+### Region Analysis
+- Identifies key areas: Top/Bottom/Center and Left/Right/Center
+- Determines if model focuses on specific regions or considers entire image
+- Provides interpretable feedback on model behavior
 
----
+## 📁 Project Structure
 
-## 🧠 AI 모델 구성
+```
+├── classify_drawings.py          # Main classification script
+├── drawing_finetuned_yolo.pt    # Trained YOLOv8 model
+├── test_images/                 # Sample test images
+└── results/                     # Output analysis images
+```
 
-- 학습 데이터: 얼굴 사진 및 어린이 그림 (감정 레이블 포함)
-- 사용 모델: CNN 기반 커스텀 모델 + 파인튜닝 (ResNet 등)
-- 분류 감정: 행복, 슬픔, 분노, 두려움 등 4~6개 클래스
+## 🎨 Example Results
 
----
+```
+==================================================
+Classification Results
+==================================================
+Predicted Class: angry
+Confidence: 0.6055
+Original Image Size: (480, 640)
+Model Input Size: 224x224
 
-## 📁 디렉토리 구조
+Top 3 Class Probabilities:
+1. angry: 0.6055
+2. happy: 0.2341
+3. sad: 0.1604
 
+Prediction Insights:
+- Model considered the entire image comprehensively.
+- Medium confidence prediction.
+```
+
+## 🔧 Model Training
+
+The model was fine-tuned using YOLOv8 classification on a custom dataset of children's drawings. 
+
+### Training Details
+- **Base Model**: YOLOv8 Classification
+- **Input Size**: 224x224 pixels
+- **Training Data**: Custom drawing dataset
+- **Output**: Fine-tuned model saved as `drawing_finetuned_yolo.pt`
+
+## 🚨 Known Issues
+
+### Importance Mapping Limitations
+- Current occlusion-based analysis may not perfectly reflect actual model decision process
+- Some models may show unexpected importance patterns (e.g., background over facial features)
+- Consider this as supplementary analysis rather than definitive explanation
+
+### Recommendations
+- Review model training data for potential biases
+- Consider additional validation with diverse test images
+- Monitor confidence scores for prediction reliability
+
+## 📈 Performance Notes
+
+- **Processing Time**: ~2-5 seconds per image (including visualization)
+- **Memory Usage**: Moderate (depends on image size and batch processing)
+- **Accuracy**: Varies by drawing quality and training data similarity
+
+## 🙏 Acknowledgments
+
+- [Ultralytics YOLOv8](https://github.com/ultralytics/ultralytics) for the base model
+- OpenCV and Matplotlib for image processing and visualization
+- Contributors and testers who helped improve the model
