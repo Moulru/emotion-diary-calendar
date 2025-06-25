@@ -39,10 +39,16 @@ The model provides:
 - Provides interpretable feedback on model behavior
 
 ## 📁 Project Structure
-
 ```
-├── classify_drawings.py          # Main classification script
-├── drawing_finetuned_yolo.pt    # Trained YOLOv8 model
+├── code/                        # Model training and prediction code
+│   ├── img_prediction_Dino.ipynb           # DINO model prediction notebook
+│   ├── img_prediction_YOLOv8n-cls.ipynb    # YOLOv8n classification notebook
+│   ├── img_prediction_YOLOv8x-cls.ipynb    # YOLOv8x classification notebook
+│   ├── img_prediction_resnet18.ipynb       # ResNet18 prediction notebook
+│   └── ModelTest(Yolov8x_cls).ipynb        # YOLOv8x classification model test
+├── models/                      # Trained model files
+│   ├── drawing_finetuned_yolo.pt           # Fine-tuned YOLO model for drawings
+│   └── photo_pretrained_yolo.pt            # Pre-trained YOLO model for photos
 ├── test_images/                 # Sample test images
 └── results/                     # Output analysis images
 ```
