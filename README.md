@@ -49,8 +49,6 @@ The model provides:
 ├── models/                      # Trained model files
 │   ├── drawing_finetuned_yolo.pt           # Fine-tuned YOLO model for drawings
 │   └── photo_pretrained_yolo.pt            # Pre-trained YOLO model for photos
-├── test_images/                 # Sample test images
-└── results/                     # Output analysis images
 ```
 
 ## 🎨 Example Results
