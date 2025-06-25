@@ -75,18 +75,6 @@ The model was fine-tuned using YOLOv8 classification on a custom dataset of chil
 - **Training Data**: Custom drawing dataset
 - **Output**: Fine-tuned model saved as `drawing_finetuned_yolo.pt`
 
-## 🚨 Known Issues
-
-### Importance Mapping Limitations
-- Current occlusion-based analysis may not perfectly reflect actual model decision process
-- Some models may show unexpected importance patterns (e.g., background over facial features)
-- Consider this as supplementary analysis rather than definitive explanation
-
-### Recommendations
-- Review model training data for potential biases
-- Consider additional validation with diverse test images
-- Monitor confidence scores for prediction reliability
-
 ## 📈 Performance Notes
 
 - **Processing Time**: ~2-5 seconds per image (including visualization)
