@@ -1,5 +1,8 @@
 # YOLOv8 Drawing Classification
 
+> **📅 프로젝트 기간**: 2025.06.15 ~ 2025.07.10  
+> **👥 참여 인원**: 김시환, 박준호, 변상호, 조성완, 한승현
+
 A YOLOv8-based image classification model for analyzing children's drawings and predicting emotional states or drawing categories.
 
 ## 🎯 Features
